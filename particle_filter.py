@@ -110,6 +110,7 @@ class ParticleFilter(object):
         return predict_pts
 
     def update_state(self, pt):
+        # save actual position
         self._actual_pts.append(pt)
         pt = torch.FloatTensor(pt)
 
@@ -127,8 +128,7 @@ class ParticleFilter(object):
         # estimate position
         mu = self._estimate(self._particles)
 
-        # save results
-
+        # save result
         self._estimate_pts.append(mu)
 
         # predict
