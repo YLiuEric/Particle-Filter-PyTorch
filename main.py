@@ -4,8 +4,9 @@
 # Written by Ye Liu (ye-liu at whu.edu.cn)
 # --------------------------------------------------------
 
+from math import cos, sin
+
 import numpy as np
-from math import sin, cos
 
 from particle_filter import ParticleFilter
 from utils import get_default_hyperparams, plot
@@ -23,19 +24,11 @@ def create_curve(n, d, r):
     return pts
 
 
-def create_parabola():
-    pts = []
-    for i in range(50):
-        pts.append((i, i**2 - 2 * i + 12))
-    return pts
-
-
-def run():
+def main():
     hyperparams = get_default_hyperparams()
     pf = ParticleFilter(**hyperparams)
 
     pts = create_curve(2, 15, 0)
-    # pts = create_parabola()
     for pt in pts:
         predict_pts = pf.update_state(pt)
 
@@ -43,4 +36,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    main()
